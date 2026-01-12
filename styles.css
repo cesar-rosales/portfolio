@@ -310,3 +310,104 @@ body {
     grid-column: span 12;
   }
 }
+
+/* --- Hero entrance animation --- */
+.hero__content {
+  animation: enter 700ms ease-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger children slightly */
+.hero__kicker {
+  animation: enter 650ms ease-out both;
+}
+.hero__title {
+  animation: enter 750ms ease-out both;
+}
+.hero__subtitle {
+  animation: enter 850ms ease-out both;
+}
+.hero__actions {
+  animation: enter 950ms ease-out both;
+}
+.hero__hint {
+  animation: enter 1050ms ease-out both;
+}
+
+.hero__kicker,
+.hero__title,
+.hero__subtitle,
+.hero__actions,
+.hero__hint {
+  will-change: transform, opacity;
+}
+
+/* --- Parallax glow --- */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    500px 360px at var(--hx, 50%) var(--hy, 50%),
+    rgba(98, 0, 255, 0.18),
+    rgba(0, 255, 200, 0.1) 40%,
+    transparent 70%
+  );
+  filter: blur(18px);
+  opacity: 0.9;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+}
+
+/* --- Button micro-interactions --- */
+.btn {
+    transition: transform 150ms ease, filter 150ms ease, background 150ms ease, opacity 150ms ease;
+  }
+  
+  .btn:active {
+    transform: translateY(1px) scale(0.99);
+  }
+  
+  .btn_primary {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* soft shimmer on hover */
+  .btn_primary::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -60%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: rotate(20deg);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  
+  .btn_primary:hover::after {
+    opacity: 1;
+    animation: shimmer 900ms ease forwards;
+  }
+  
+  @keyframes shimmer {
+    from { transform: translateX(0) rotate(20deg); }
+    to   { transform: translateX(240%) rotate(20deg); }
+  }
+  
