@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cesar Rosales | Front-End Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Cesar Rosales — Front-End Developer."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- Interactive “spotlight” layer -->
+    <div class="spotlight" aria-hidden="true"></div>
+
+    <header class="hero" id="top">
+      <nav class="nav">
+        <div class="nav__left">CR</div>
+        <div class="nav__right">
+          <a class="nav__link" href="#projects">Projects</a>
+          <a class="nav__link" href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero__content">
+        <p class="hero__kicker">
+          Front-End Developer · JavaScript · UI Engineering
+        </p>
+        <h1 class="hero__title">Cesar Rosales</h1>
+        <p class="hero__subtitle" id="typeLine">
+          I build clean, interactive web experiences.
+        </p>
+
+        <div class="hero__actions">
+          <button class="btn btn_primary" id="unlockBtn" type="button">
+            Open the Vault →
+          </button>
+          <a
+            class="btn btn_ghost"
+            href="https://github.com/cesar-rosales"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+
+        <div class="hero__hint">
+          <span class="hero__dot"></span>
+          <span>Move your mouse</span>
+        </div>
+      </div>
+
+      <div class="hero__scroll">
+        <a href="#projects" class="scrollLink">Scroll ↓</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="projects">
+        <div class="section__header">
+          <h2 class="section__title">Projects</h2>
+          <p class="section__desc">A few builds I’m proud of.</p>
+        </div>
+
+        <div class="grid">
+          <!-- SPOTS -->
+          <article class="card">
+            <div class="card__top">
+              <h3 class="card__title">Spots</h3>
+              <p class="card__tag">Vanilla JS • Webpack • Responsive UI</p>
+            </div>
+
+            <p class="card__body">
+              Spots is a responsive, social media–style web application where
+              users can edit a profile and create image-based posts. Built with
+              modular ES6 JavaScript and Webpack, with client-side validation,
+              modals (ESC/overlay close), and a polished UX.
+            </p>
+
+            <div class="card__links">
+              <a
+                class="link"
+                href="https://cesar-rosales.github.io/se_project_spots/"
+                target="_blank"
+                rel="noreferrer"
+                >Live</a
+              >
+              <a
+                class="link"
+                href="https://github.com/cesar-rosales/se_project_spots"
+                target="_blank"
+                rel="noreferrer"
+                >Code</a
+              >
+              <a
+                class="link"
+                href="https://drive.google.com/file/d/1-2vFM5HXizuFZHcUxReLVoKm4FFW_uaK/view"
+                target="_blank"
+                rel="noreferrer"
+                >Video</a
+              >
+            </div>
+          </article>
+
+          <!-- Placeholder cards (replace later) -->
+          <article class="card card_muted">
+            <div class="card__top">
+              <h3 class="card__title">Next Project</h3>
+              <p class="card__tag">Coming soon</p>
+            </div>
+            <p class="card__body">
+              This slot is reserved for my next build — something with an API +
+              more complex UI state.
+            </p>
+            <div class="card__links">
+              <span class="link link_disabled">Soon</span>
+            </div>
+          </article>
+
+          <article class="card card_muted">
+            <div class="card__top">
+              <h3 class="card__title">Next Project</h3>
+              <p class="card__tag">Coming soon</p>
+            </div>
+            <p class="card__body">
+              I’ll keep this portfolio updated as I build and ship more
+              projects.
+            </p>
+            <div class="card__links">
+              <span class="link link_disabled">Soon</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section__header">
+          <h2 class="section__title">Contact</h2>
+          <p class="section__desc">Let’s connect.</p>
+        </div>
+
+        <div class="contact">
+          <a class="btn btn_primary" href="mailto:cesarrosales.se@gmail.com">
+            Email Me
+          </a>
+          <a class="btn btn_ghost" href="tel:12144339780"> Call / Text </a>
+          <a
+            class="btn btn_ghost"
+            href="www.linkedin.com/in/cesarrosales-engineer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Cesar Rosales</p>
+      <a class="footer__top" href="#top">Back to top ↑</a>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
