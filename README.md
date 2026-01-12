@@ -30,4 +30,4 @@ https://cesar-rosales.github.io/portfolio/
 
 - Email: cesarrosales.se@gmail.com
 - GitHub: https://github.com/cesar-rosales
-- LinkedIn: 
+- LinkedIn: https://www.linkedin.com/in/cesarrosales-engineer/

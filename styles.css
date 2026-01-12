@@ -1,4 +1,4 @@
-hjkjn:root {
+:root {
   --bg: #070a12;
   --text: #eaf0ff;
   --muted: rgba(234, 240, 255, 0.7);
@@ -43,13 +43,23 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
+
+  /* performance helpers */
+  will-change: background;
+  transform: translateZ(0);
+  contain: paint;
+
+  /* keep your existing values */
   background: radial-gradient(
     600px 400px at var(--x, 50%) var(--y, 50%),
     rgba(255, 255, 255, 0.12),
     rgba(255, 255, 255, 0.04) 35%,
     transparent 60%
   );
+
+  /* this is expensive; if still laggy, see option below */
   mix-blend-mode: screen;
+
   opacity: 0.9;
   transition: opacity 200ms ease;
 }
@@ -59,6 +69,7 @@ body {
   display: grid;
   align-content: start;
   padding: 24px;
+  position: relative;
 }
 
 .nav {
@@ -165,11 +176,18 @@ body {
 }
 
 .hero__hint {
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   align-items: center;
   margin-top: 18px;
-  color: rgba(234, 240, 255, 0.55);
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
 }
 
@@ -177,22 +195,43 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 99px;
-  background: rgba(0, 255, 200, 0.8);
-  box-shadow: 0 0 22px rgba(0, 255, 200, 0.5);
+  background: rgba(0, 255, 200, 1);
+  box-shadow: 0 0 26px rgba(0, 255, 200, 0.75);
 }
 
 .hero__scroll {
-  max-width: 1080px;
-  margin: 60px auto 0;
-  width: 100%;
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  margin: 0;
+  opacity: 0.65;
+  z-index: 2;
 }
 
 .scrollLink {
-  color: rgba(234, 240, 255, 0.55);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: rgba(234, 240, 255, 0.65);
   text-decoration: none;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
 }
+
 .scrollLink:hover {
-  color: var(--text);
+  color: rgba(234, 240, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .section {
@@ -341,7 +380,7 @@ body {
   animation: enter 950ms ease-out both;
 }
 .hero__hint {
-  animation: enter 1050ms ease-out both;
+  animation: hintPulse 2.5s ease-in-out 3;
 }
 
 .hero__kicker,
@@ -375,39 +414,58 @@ body {
 
 /* --- Button micro-interactions --- */
 .btn {
-    transition: transform 150ms ease, filter 150ms ease, background 150ms ease, opacity 150ms ease;
+  transition: transform 150ms ease, filter 150ms ease, background 150ms ease,
+    opacity 150ms ease;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn_primary {
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft shimmer on hover */
+.btn_primary::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transform: rotate(20deg);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.btn_primary:hover::after {
+  opacity: 1;
+  animation: shimmer 900ms ease forwards;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(0) rotate(20deg);
   }
-  
-  .btn:active {
-    transform: translateY(1px) scale(0.99);
+  to {
+    transform: translateX(240%) rotate(20deg);
   }
-  
-  .btn_primary {
-    position: relative;
-    overflow: hidden;
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    opacity: 0.85;
   }
-  
-  /* soft shimmer on hover */
-  .btn_primary::after {
-    content: "";
-    position: absolute;
-    top: -40%;
-    left: -60%;
-    width: 60%;
-    height: 200%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    transform: rotate(20deg);
-    opacity: 0;
-    transition: opacity 200ms ease;
-  }
-  
-  .btn_primary:hover::after {
+  50% {
     opacity: 1;
-    animation: shimmer 900ms ease forwards;
   }
-  
-  @keyframes shimmer {
-    from { transform: translateX(0) rotate(20deg); }
-    to   { transform: translateX(240%) rotate(20deg); }
-  }
-  
+}
