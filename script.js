@@ -15,8 +15,16 @@ window.addEventListener("mousemove", (e) => {
 unlockBtn.addEventListener("click", () => {
   projects.scrollIntoView({ behavior: "smooth" });
 
-  // small “unlock” feedback
+  // temporary “unlock” feedback
   unlockBtn.textContent = "Vault Open ✓";
   unlockBtn.disabled = true;
   unlockBtn.style.opacity = "0.85";
+
+  // re-lock after 3 seconds
+  setTimeout(() => {
+    unlockBtn.textContent = "Open the Vault →";
+    unlockBtn.disabled = false;
+    unlockBtn.style.opacity = "1";
+    unlockBtn.blur();
+  }, 3000);
 });
